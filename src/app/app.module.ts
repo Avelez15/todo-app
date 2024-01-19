@@ -8,15 +8,23 @@ import { InputButtonComponent } from './input-button/input-button.component';
 import { HeaderComponent } from './header/header.component';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIconModule } from '@angular/material/icon';
+import { MatCardModule } from '@angular/material/card';
+import { TodoItemComponent } from './todo-item/todo-item.component';
 
 @NgModule({
-  declarations: [AppComponent, InputButtonComponent, HeaderComponent],
+  declarations: [
+    AppComponent,
+    InputButtonComponent,
+    HeaderComponent,
+    TodoItemComponent,
+  ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
     MatSlideToggleModule,
     MatToolbarModule,
     MatIconModule,
+    MatCardModule,
   ],
   providers: [InputButtonComponent],
   bootstrap: [AppComponent],
