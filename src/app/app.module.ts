@@ -18,7 +18,7 @@ import { MatIconModule } from '@angular/material/icon';
     MatToolbarModule,
     MatIconModule,
   ],
-  providers: [],
+  providers: [InputButtonComponent],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

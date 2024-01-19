@@ -1,1 +1,6 @@
-<p>input-button works! The item title is :{{ title }}</p>
+<input
+  #inputElementRef
+  [value]="title"
+  (keyup.enter)="changeTitle(getInputValue($event))"
+/>
+<button (click)="changeTitle(inputElementRef.value)">Save</button>

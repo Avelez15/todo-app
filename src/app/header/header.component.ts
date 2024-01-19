@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, Inject } from '@angular/core';
+import { InputButtonComponent } from '../input-button/input-button.component';
 
 @Component({
   selector: 'app-header',
@@ -6,6 +7,11 @@ import { Component } from '@angular/core';
   styleUrls: ['./header.component.scss'],
 })
 export class HeaderComponent {
+  constructor(
+    @Inject(InputButtonComponent)
+    private inputButtonComponent: InputButtonComponent
+  ) {}
+
   addTask() {
     console.log('addTask works!');
   }
