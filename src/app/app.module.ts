@@ -11,6 +11,9 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatCardModule } from '@angular/material/card';
 import { TodoItemComponent } from './todo-item/todo-item.component';
 import { ListManagerComponent } from './list-manager/list-manager.component';
+import { MatButtonModule } from '@angular/material/button';
+import { MatInputModule } from '@angular/material/input';
+import { MatFormFieldModule } from '@angular/material/form-field';
 
 @NgModule({
   declarations: [
@@ -27,6 +30,9 @@ import { ListManagerComponent } from './list-manager/list-manager.component';
     MatToolbarModule,
     MatIconModule,
     MatCardModule,
+    MatButtonModule,
+    MatInputModule,
+    MatFormFieldModule,
   ],
   providers: [InputButtonComponent],
   bootstrap: [AppComponent],

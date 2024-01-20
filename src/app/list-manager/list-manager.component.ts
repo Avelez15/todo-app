@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { TodoItem } from '../interfaces/todo-item';
+import { TodoItem } from '../todo-item/todo-item';
 
 @Component({
   selector: 'app-list-manager',
