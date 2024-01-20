@@ -1,0 +1,7 @@
+<app-input-button (submit)="addItem($event)"></app-input-button>
+
+<div class="todo-list">
+  <div *ngFor="let todoItem of todoList" class="todo-item">
+    <mat-card>{{ todoItem.title }}</mat-card>
+  </div>
+</div>

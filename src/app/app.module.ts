@@ -10,6 +10,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIconModule } from '@angular/material/icon';
 import { MatCardModule } from '@angular/material/card';
 import { TodoItemComponent } from './todo-item/todo-item.component';
+import { ListManagerComponent } from './list-manager/list-manager.component';
 
 @NgModule({
   declarations: [
@@ -17,6 +18,7 @@ import { TodoItemComponent } from './todo-item/todo-item.component';
     InputButtonComponent,
     HeaderComponent,
     TodoItemComponent,
+    ListManagerComponent,
   ],
   imports: [
     BrowserModule,
