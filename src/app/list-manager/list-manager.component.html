@@ -2,6 +2,6 @@
 
 <div class="todo-list">
   <div *ngFor="let todoItem of todoList" class="todo-item">
-    <mat-card>{{ todoItem.title }}</mat-card>
+    <app-todo-item [item]="todoItem"></app-todo-item>
   </div>
 </div>
