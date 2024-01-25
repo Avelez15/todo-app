@@ -1,5 +1,10 @@
 <div>
-  <input mat-input [(ngModel)]="newTodoTitle" placeholder="Enter todo" />
+  <input
+    mat-input
+    [(ngModel)]="newTodoTitle"
+    placeholder="Enter todo"
+    (keydown.enter)="addItem()"
+  />
   <button mat-button (click)="addItem()">Add Todo</button>
 </div>
 
