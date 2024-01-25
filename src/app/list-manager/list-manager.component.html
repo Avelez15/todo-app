@@ -1,7 +1,15 @@
-<app-input-button (submit)="addItem($event)"></app-input-button>
+<div>
+  <input mat-input [(ngModel)]="newTodoTitle" placeholder="Enter todo" />
+  <button mat-button (click)="addItem()">Add Todo</button>
+</div>
 
-<div class="todo-list">
-  <div *ngFor="let todoItem of todoList" class="todo-item">
-    <app-todo-item [item]="todoItem"></app-todo-item>
+<div>
+  <div *ngFor="let todo of todoList$ | async">
+    <mat-card
+      class="flashcards"
+      style="background-color: antiquewhite"
+      [@cardAnimation]
+      ><div class="flashcards-content">{{ todo.title }}</div></mat-card
+    >
   </div>
 </div>

@@ -11,8 +11,4 @@ export class HeaderComponent {
     @Inject(InputButtonComponent)
     private InputButtonComponent: InputButtonComponent
   ) {}
-
-  addTask() {
-    console.log('addTask works!');
-  }
 }

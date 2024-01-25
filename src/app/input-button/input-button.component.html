@@ -1,8 +1,0 @@
-<input
-  #inputElementRef
-  [value]="title"
-  (keyup.enter)="submitValue(getInputValue($event))"
-/>
-<button (click)="submitValue(inputElementRef.value)" mat-icon-button>
-  <mat-icon fontIcon="add"></mat-icon>
-</button>

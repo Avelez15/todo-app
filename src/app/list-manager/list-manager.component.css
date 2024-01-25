@@ -11,13 +11,13 @@
 }
 
 .todo-item .mat-card {
-  width: 300px; /* Adjust the width as needed */
-  height: 150px; /* Adjust the height as needed */
+  width: 300px;
+  height: 150px;
   display: flex;
   align-items: left;
   justify-content: left;
   background-color: #fff;
-  border: 2px solid #3498db; /* Card border color */
+  border: 2px solid #3498db;
   border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   cursor: pointer;
@@ -26,5 +26,21 @@
 }
 
 .todo-item .mat-card:hover {
-  transform: scale(1.05); /* Add a slight scale effect on hover */
+  transform: scale(1.05);
+}
+
+.flashcards {
+  width: 200px; /* Set your desired width */
+  height: 150px; /* Set your desired height */
+  padding: 16px; /* Add padding for better visual appearance */
+  margin: 8px; /* Add margin between cards */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Add a subtle box shadow */
+  border-radius: 8px; /* Add rounded corners for a card-like appearance */
+  overflow: hidden;
+}
+
+.flashcards-content {
+  max-height: 100%; /* Limit the height of the content */
+  overflow: hidden; /* Hide overflow content */
+  word-wrap: break-word; /* Allow long words to break and wrap */
 }
