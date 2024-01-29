@@ -30,8 +30,8 @@
 }
 
 .flashcards {
-  width: 200px; /* Set your desired width */
-  height: 150px; /* Set your desired height */
+  width: 300px; /* Set your desired width */
+  height: 200px; /* Set your desired height */
   padding: 16px; /* Add padding for better visual appearance */
   margin: 8px; /* Add margin between cards */
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Add a subtle box shadow */

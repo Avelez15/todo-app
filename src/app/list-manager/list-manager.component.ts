@@ -19,6 +19,7 @@ import {
       transition(':enter,:leave', [animate('0.5s')]),
     ]),
   ],
+  providers: [StoreServiceService],
 })
 export class ListManagerComponent {
   constructor(private storeService: StoreServiceService) {}
@@ -26,6 +27,10 @@ export class ListManagerComponent {
   todoList$ = this.storeService.todoList$;
   currentItem$ = this.storeService.todoList$;
   newTodoTitle = '';
+
+  toggleUpdate(todo: TodoItem) {
+    todo.showUpdate = !todo.showUpdate;
+  }
 
   addItem() {
     const todoId = Math.ceil(Math.random() * 100).toString();
@@ -38,5 +43,29 @@ export class ListManagerComponent {
     this.storeService.addItem(newTodo);
 
     this.newTodoTitle = '';
+  }
+
+  onDelete(todoId: string) {
+    this.storeService.deleteTodo(todoId);
+  }
+  submitUpdatedTodo(todo: TodoItem) {
+    const updatedTitle = todo.updatedTitle || todo.title;
+
+    const updatedTodo: TodoItem = {
+      ...todo,
+      title: updatedTitle,
+      showUpdate: false,
+    };
+
+    this.storeService.updateTodo(updatedTodo);
+  }
+
+  completeTodo(todoItem: TodoItem) {
+    const updatedTodo: TodoItem = {
+      ...todoItem,
+      completed: !todoItem.completed,
+    };
+
+    this.storeService.updateTodo(updatedTodo);
   }
 }

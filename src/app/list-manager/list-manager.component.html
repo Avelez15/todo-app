@@ -4,8 +4,10 @@
     [(ngModel)]="newTodoTitle"
     placeholder="Enter todo"
     (keydown.enter)="addItem()"
+    style="width: 300px; height: 40px; margin: 10px"
+    maxlength="200"
   />
-  <button mat-button (click)="addItem()">Add Todo</button>
+  <button mat-raised-button (click)="addItem()">Add Todo</button>
 </div>
 
 <div>
@@ -14,7 +16,24 @@
       class="flashcards"
       style="background-color: antiquewhite"
       [@cardAnimation]
-      ><div class="flashcards-content">{{ todo.title }}</div></mat-card
     >
+      <div class="flashcards-content">
+        <div>{{ todo.title }}</div>
+        <div *ngIf="todo.showUpdate">
+          <input
+            mat-input
+            [(ngModel)]="todo.updatedTitle"
+            placeholder="Enter updated text"
+            maxlength="200"
+          />
+          <button mat-button (click)="submitUpdatedTodo(todo)">Submit</button>
+        </div>
+      </div>
+    </mat-card>
+    <button mat-button (click)="toggleUpdate(todo)">Update Todo</button>
+    <button mat-button (click)="onDelete(todo.todoId)">Delete Todo</button>
+    <button mat-button [disabled]="todo.completed" (click)="completeTodo(todo)">
+      {{ todo.completed ? "completed" : "complete" }}
+    </button>
   </div>
 </div>

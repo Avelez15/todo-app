@@ -30,17 +30,11 @@ export class StoreServiceService extends ComponentStore<AppState> {
     });
   }
 
-  selectItem(todoId: string) {
-    this.patchState({
-      currentTodoId: todoId,
-    });
-  }
-
   updateTodo = this.updater((state: AppState, todoItem: TodoItem) => {
     return {
       ...state,
       todoList: state.todoList.map((todo) => {
-        if ((todoItem.todoId = todo.todoId)) {
+        if (todoItem.todoId === todo.todoId) {
           return todoItem;
         }
 
@@ -52,13 +46,7 @@ export class StoreServiceService extends ComponentStore<AppState> {
   deleteTodo = this.updater((state: AppState, todoId: string) => {
     return {
       ...state,
-      todoList: state.todoList.filter((todo) => {
-        if (todo.todoId === todoId) {
-          return false;
-        }
-
-        return true;
-      }),
+      todoList: state.todoList.filter((todo) => todo.todoId !== todoId),
     };
   });
 
