@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import { TodoItem } from '../todo-item/todo-item.interface';
-import { StoreServiceService } from '../store-service.service';
+import { TodoItem } from '../todo-item.interface';
+import { StoreServiceService } from '../todo-store.service';
 import {
   trigger,
   state,
@@ -8,6 +8,7 @@ import {
   transition,
   animate,
 } from '@angular/animations';
+import { AppComponent } from '../app.component';
 
 @Component({
   selector: 'app-list-manager',
@@ -19,7 +20,7 @@ import {
       transition(':enter,:leave', [animate('0.5s')]),
     ]),
   ],
-  providers: [StoreServiceService],
+  providers: [AppComponent],
 })
 export class ListManagerComponent {
   constructor(private storeService: StoreServiceService) {}
@@ -49,11 +50,11 @@ export class ListManagerComponent {
     this.storeService.deleteTodo(todoId);
   }
   submitUpdatedTodo(todo: TodoItem) {
-    const updatedTitle = todo.updatedTitle || todo.title;
+    const updatedTitle = todo.title;
 
     const updatedTodo: TodoItem = {
       ...todo,
-      title: updatedTitle,
+      title: todo.title,
       showUpdate: false,
     };
 
