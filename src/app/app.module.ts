@@ -17,7 +17,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatPseudoCheckboxModule } from '@angular/material/core';
 import { MatDialogModule } from '@angular/material/dialog';
 import { HttpClientModule } from '@angular/common/http';
-import { StoreServiceService } from './todo-store.service';
+import { TodoStoreService } from './todo-store.service';
 import { FormsModule } from '@angular/forms';
 
 @NgModule({
@@ -45,6 +45,6 @@ import { FormsModule } from '@angular/forms';
     BrowserAnimationsModule,
   ],
   bootstrap: [AppComponent],
-  providers: [StoreServiceService, InputButtonComponent],
+  providers: [TodoStoreService, InputButtonComponent],
 })
 export class AppModule {}

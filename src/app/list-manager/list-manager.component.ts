@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { TodoItem } from '../todo-item.interface';
-import { StoreServiceService } from '../todo-store.service';
+import { TodoStoreService } from '../todo-store.service';
 import {
   trigger,
   state,
@@ -23,7 +23,7 @@ import { AppComponent } from '../app.component';
   providers: [AppComponent],
 })
 export class ListManagerComponent {
-  constructor(private storeService: StoreServiceService) {}
+  constructor(private storeService: TodoStoreService) {}
 
   todoList$ = this.storeService.todoList$;
   currentItem$ = this.storeService.todoList$;
