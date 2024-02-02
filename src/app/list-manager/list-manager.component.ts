@@ -1,14 +1,7 @@
 import { Component } from '@angular/core';
 import { TodoItem } from '../todo-item.interface';
 import { TodoStoreService } from '../todo-store.service';
-import {
-  trigger,
-  state,
-  style,
-  transition,
-  animate,
-} from '@angular/animations';
-import { AppComponent } from '../app.component';
+import { trigger, state, style, transition, animate } from '@angular/animations';
 
 @Component({
   selector: 'app-list-manager',
@@ -20,13 +13,12 @@ import { AppComponent } from '../app.component';
       transition(':enter,:leave', [animate('0.5s')]),
     ]),
   ],
-  providers: [AppComponent],
 })
 export class ListManagerComponent {
   constructor(private storeService: TodoStoreService) {}
 
-  todoList$ = this.storeService.todoList$;
-  currentItem$ = this.storeService.todoList$;
+  todoList$ = this.storeService.todo$;
+  currentItem$ = this.storeService.currentTodo$;
   newTodoTitle = '';
 
   toggleUpdate(todo: TodoItem) {
@@ -49,12 +41,10 @@ export class ListManagerComponent {
   onDelete(todoId: string) {
     this.storeService.deleteTodo(todoId);
   }
-  submitUpdatedTodo(todo: TodoItem) {
-    const updatedTitle = todo.title;
 
+  submitUpdatedTodo(todo: TodoItem) {
     const updatedTodo: TodoItem = {
       ...todo,
-      title: todo.title,
       showUpdate: false,
     };
 
