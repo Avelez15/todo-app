@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { TodoItem } from './todo-item.interface';
-import { ComponentStore } from '@ngrx/component-store';
-import { Observable } from 'rxjs';
+import { ComponentStore, OnStoreInit } from '@ngrx/component-store';
 
 export interface AppState {
   todoList: TodoItem[];
@@ -16,48 +15,51 @@ export const initialState: AppState = {
 @Injectable({
   providedIn: 'root',
 })
-export class TodoStoreService extends ComponentStore<AppState> {
+export class TodoStoreService
+  extends ComponentStore<AppState>
+  implements OnStoreInit
+{
   constructor() {
     super(initialState);
   }
 
-  addItem(todoItem: TodoItem) {
+  ngrxOnStoreInit() {}
+
+  addItem(todoItem: TodoItem): void {
     this.setState((state) => {
-      return {
+      const updatedState = {
         ...state,
         todoList: [...state.todoList, todoItem],
       };
+      return updatedState;
     });
   }
 
   updateTodo = this.updater((state: AppState, todoItem: TodoItem) => {
-    return {
+    const updatedState = {
       ...state,
-      todoList: state.todoList.map((todo) => {
-        if (todoItem.todoId === todo.todoId) {
-          return todoItem;
-        }
-
-        return todo;
-      }),
+      todoList: state.todoList.map((todo) =>
+        todoItem.todoId === todo.todoId ? todoItem : todo
+      ),
     };
+    return updatedState;
   });
 
   deleteTodo = this.updater((state: AppState, todoId: string) => {
-    return {
+    const updatedState = {
       ...state,
       todoList: state.todoList.filter((todo) => todo.todoId !== todoId),
     };
+    return updatedState;
   });
 
-  todoList$: Observable<TodoItem[]> = this.select((state) => state.todoList);
   todo$ = this.select((state) => state.todoList);
+
   currentTodoId$ = this.select((state) => state.currentTodoId);
   currentTodo$ = this.select(
     this.todo$,
     this.currentTodoId$,
-    (todoList, currentTodoId) => {
-      todoList.find((todo) => todo.todoId === currentTodoId);
-    }
+    (todoList, currentTodoId) =>
+      todoList.find((todo) => todo.todoId === currentTodoId)
   );
 }

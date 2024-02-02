@@ -2,8 +2,10 @@ mat-toolbar {
   display: flex;
   justify-content: space-between;
   align-items: right;
+  background-color: brown;
+}
 
-  button {
-    margin-left: auto;
-  }
+span {
+  font-family: 'Honk', system-ui;
+  font-size: larger;
 }
