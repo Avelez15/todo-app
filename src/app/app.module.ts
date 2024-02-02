@@ -19,6 +19,7 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { HttpClientModule } from '@angular/common/http';
 import { TodoStoreService } from './todo-store.service';
 import { FormsModule } from '@angular/forms';
+import { provideComponentStore } from '@ngrx/component-store';
 
 @NgModule({
   declarations: [
@@ -45,6 +46,6 @@ import { FormsModule } from '@angular/forms';
     BrowserAnimationsModule,
   ],
   bootstrap: [AppComponent],
-  providers: [TodoStoreService, InputButtonComponent],
+  providers: [InputButtonComponent, provideComponentStore(TodoStoreService)],
 })
 export class AppModule {}

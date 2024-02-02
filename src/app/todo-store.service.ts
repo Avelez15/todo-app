@@ -23,7 +23,17 @@ export class TodoStoreService
     super(initialState);
   }
 
-  ngrxOnStoreInit() {}
+  ngrxOnStoreInit() {
+    const todoState = localStorage.getItem('todoState');
+    if (todoState) {
+      const todoStateJson = JSON.parse(todoState);
+      this.setState(todoStateJson);
+    }
+    this.state$.subscribe((value) => {
+      localStorage.setItem('todoState', JSON.stringify(value));
+      console.log(value);
+    });
+  }
 
   addItem(todoItem: TodoItem): void {
     this.setState((state) => {
