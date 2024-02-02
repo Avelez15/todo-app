@@ -31,7 +31,6 @@ export class TodoStoreService
     }
     this.state$.subscribe((value) => {
       localStorage.setItem('todoState', JSON.stringify(value));
-      console.log(value);
     });
   }
 
