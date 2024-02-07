@@ -20,6 +20,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { TodoStoreService } from './todo-store.service';
 import { FormsModule } from '@angular/forms';
 import { provideComponentStore } from '@ngrx/component-store';
+import { DeletedTodosComponent } from './deleted-todos/deleted-todos.component';
 
 @NgModule({
   declarations: [
@@ -27,6 +28,7 @@ import { provideComponentStore } from '@ngrx/component-store';
     InputButtonComponent,
     HeaderComponent,
     ListManagerComponent,
+    DeletedTodosComponent,
   ],
   imports: [
     HttpClientModule,

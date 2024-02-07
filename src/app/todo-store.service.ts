@@ -4,11 +4,13 @@ import { ComponentStore, OnStoreInit } from '@ngrx/component-store';
 
 export interface AppState {
   todoList: TodoItem[];
+  deletedTodoList: TodoItem[];
   currentTodoId: string | null;
 }
 
 export const initialState: AppState = {
   todoList: [],
+  deletedTodoList: [],
   currentTodoId: null,
 };
 
@@ -25,12 +27,23 @@ export class TodoStoreService
 
   ngrxOnStoreInit() {
     const todoState = localStorage.getItem('todoState');
+    const DeletedTodoState = localStorage.getItem('deletedTodoState');
     if (todoState) {
       const todoStateJson = JSON.parse(todoState);
       this.setState(todoStateJson);
     }
+
+    if (DeletedTodoState) {
+      const deletedTodoStateJson = JSON.parse(DeletedTodoState);
+      this.setState(deletedTodoStateJson);
+    }
+
     this.state$.subscribe((value) => {
       localStorage.setItem('todoState', JSON.stringify(value));
+      localStorage.setItem(
+        'deletedTodoState',
+        JSON.stringify(value.deletedTodoList)
+      );
     });
   }
 
@@ -55,11 +68,11 @@ export class TodoStoreService
   });
 
   deleteTodo = this.updater((state: AppState, todoId: string) => {
-    const updatedState = {
+    const deletedState = {
       ...state,
       todoList: state.todoList.filter((todo) => todo.todoId !== todoId),
     };
-    return updatedState;
+    return deletedState;
   });
 
   todo$ = this.select((state) => state.todoList);
