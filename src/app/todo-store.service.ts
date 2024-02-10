@@ -27,15 +27,24 @@ export class TodoStoreService
 
   ngrxOnStoreInit() {
     const todoState = localStorage.getItem('todoState');
-    const DeletedTodoState = localStorage.getItem('deletedTodoState');
+    console.log('todoState:', todoState)
+    const deletedTodoState = localStorage.getItem('deletedTodoState');
+    console.log('deletedTodoState:', deletedTodoState)
     if (todoState) {
       const todoStateJson = JSON.parse(todoState);
       this.setState(todoStateJson);
     }
 
-    if (DeletedTodoState) {
-      const deletedTodoStateJson = JSON.parse(DeletedTodoState);
-      this.setState(deletedTodoStateJson);
+    if (deletedTodoState) {
+      try {
+        const deletedTodoStateJson = JSON.parse(deletedTodoState);
+        this.setState((state) => ({
+        ...state,
+          deletedTodoList: deletedTodoStateJson,
+        }));
+      } catch (error) {
+        console.error('Error parsing deletedTodoStateJSON', error);
+      }
     }
 
     this.state$.subscribe((value) => {
@@ -70,7 +79,9 @@ export class TodoStoreService
   deleteTodo = this.updater((state: AppState, todoId: string) => {
     const deletedState = {
       ...state,
-      todoList: state.todoList.filter((todo) => todo.todoId !== todoId),
+      deletedTodoList: state.deletedTodoList.filter(
+        (todo) => todo.todoId !== todoId
+      ),
     };
     return deletedState;
   });
