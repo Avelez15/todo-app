@@ -1,7 +1,13 @@
 import { Component } from '@angular/core';
 import { TodoItem } from '../todo-item.interface';
 import { TodoStoreService } from '../todo-store.service';
-import { trigger, state, style, transition, animate } from '@angular/animations';
+import {
+  trigger,
+  state,
+  style,
+  transition,
+  animate,
+} from '@angular/animations';
 
 @Component({
   selector: 'app-list-manager',
