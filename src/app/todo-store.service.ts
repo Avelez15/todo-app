@@ -81,16 +81,15 @@ export class TodoStoreService
   deleteTodo = this.updater((state: AppState, todoId: string) => {
     const deletedTodo = state.todoList.find((todo) => todo.todoId === todoId);
 
-
-    if(deletedTodo) {
+    if (deletedTodo) {
       return {
         ...state,
         todoList: state.todoList.filter((todo) => todo.todoId !== todoId),
         deletedTodoList: [...state.deletedTodoList, deletedTodo],
-      }
+      };
     }
     return state;
-  })
+  });
 
   todo$ = this.select((state) => state.todoList);
 
