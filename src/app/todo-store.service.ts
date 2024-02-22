@@ -1,6 +1,6 @@
-import { Injectable } from '@angular/core';
-import { TodoItem } from './todo-item.interface';
-import { ComponentStore, OnStoreInit } from '@ngrx/component-store';
+import {Injectable} from '@angular/core';
+import {TodoItem} from './todo-item.interface';
+import {ComponentStore, OnStoreInit} from '@ngrx/component-store';
 
 export interface AppState {
   todoList: TodoItem[];
@@ -19,34 +19,34 @@ export const initialState: AppState = {
 })
 export class TodoStoreService
   extends ComponentStore<AppState>
-  implements OnStoreInit
-{
+  implements OnStoreInit {
   constructor() {
     super(initialState);
   }
 
   ngrxOnStoreInit() {
     const todoState = localStorage.getItem('todoState');
-    console.log('todoState:', todoState);
-
-    const deletedTodoState = localStorage.getItem('deletedTodoState');
-    console.log('deletedTodoState:', deletedTodoState);
-
-    if (todoState) {
-      const todoStateJson = JSON.parse(todoState);
-      this.setState(todoStateJson);
-    }
-
-    if (deletedTodoState !== null && deletedTodoState !== undefined) {
-      try {
-        const deletedTodoStateJson = JSON.parse(deletedTodoState);
-        this.setState((state) => ({
-          ...state,
-          deletedTodoList: deletedTodoStateJson,
-        }));
-      } catch (error) {
-        console.error('Error parsing deletedTodoStateJSON', error);
+    try {
+      if (todoState) {
+        const todoStateJson = JSON.parse(todoState);
+        this.setState(todoStateJson);
       }
+    } catch (e) {
+      console.error('Error parsing todoState', e);
+      alert("Something went wrong... couldn't load previous saved data!")
+      localStorage.removeItem("todoState")
+    }
+    const deletedTodoState = localStorage.getItem('deletedTodoState');
+    try {
+      const deletedTodoStateJson = JSON.parse(deletedTodoState);
+      this.setState((state) => ({
+        ...state,
+        deletedTodoList: deletedTodoStateJson,
+      }));
+    } catch (error) {
+      console.error('Error parsing deletedTodoState', error);
+      alert("Something went wrong... couldn't load previous saved data!")
+      localStorage.removeItem("deletedTodoState")
     }
 
     this.state$.subscribe((value) => {
