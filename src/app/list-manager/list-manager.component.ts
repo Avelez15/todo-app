@@ -8,6 +8,8 @@ import {
   transition,
   animate,
 } from '@angular/animations';
+import { MatBottomSheet } from '@angular/material/bottom-sheet';
+import { DeletedTodosComponent } from '../deleted-todos/deleted-todos.component';
 
 @Component({
   selector: 'app-list-manager',
@@ -21,7 +23,13 @@ import {
   ],
 })
 export class ListManagerComponent {
-  constructor(private storeService: TodoStoreService) {}
+  ShowDeletedTodos() {
+    this.sheet.open(DeletedTodosComponent);
+  }
+  constructor(
+    public storeService: TodoStoreService,
+    public sheet: MatBottomSheet
+  ) {}
 
   todoList$ = this.storeService.todo$;
   currentItem$ = this.storeService.currentTodo$;

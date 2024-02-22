@@ -20,7 +20,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { TodoStoreService } from './todo-store.service';
 import { FormsModule } from '@angular/forms';
 import { provideComponentStore } from '@ngrx/component-store';
-import { SidenavDeletedTodosComponent } from './sidenav-deleted-todos/deleted-todos.component';
+import { DeletedTodosComponent } from './deleted-todos/deleted-todos.component';
+import { MatBottomSheetModule } from '@angular/material/bottom-sheet';
 
 @NgModule({
   declarations: [
@@ -28,10 +29,11 @@ import { SidenavDeletedTodosComponent } from './sidenav-deleted-todos/deleted-to
     InputButtonComponent,
     HeaderComponent,
     ListManagerComponent,
-    SidenavDeletedTodosComponent,
+    DeletedTodosComponent,
   ],
   imports: [
     HttpClientModule,
+    MatBottomSheetModule,
     BrowserModule,
     BrowserAnimationsModule,
     MatSlideToggleModule,

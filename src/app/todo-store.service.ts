@@ -92,6 +92,7 @@ export class TodoStoreService
   });
 
   todo$ = this.select((state) => state.todoList);
+  deletedTodos$ = this.select((state) => state.deletedTodoList);
 
   currentTodoId$ = this.select((state) => state.currentTodoId);
   currentTodo$ = this.select(

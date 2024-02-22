@@ -1,16 +1,15 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
-import { SidenavDeletedTodosComponent } from './deleted-todos.component';
+import { DeletedTodosComponent } from './deleted-todos.component';
 
 describe('DeletedTodosComponent', () => {
-  let component: SidenavDeletedTodosComponent;
-  let fixture: ComponentFixture<SidenavDeletedTodosComponent>;
+  let component: DeletedTodosComponent;
+  let fixture: ComponentFixture<DeletedTodosComponent>;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [SidenavDeletedTodosComponent]
+      declarations: [DeletedTodosComponent]
     });
-    fixture = TestBed.createComponent(SidenavDeletedTodosComponent);
+    fixture = TestBed.createComponent(DeletedTodosComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

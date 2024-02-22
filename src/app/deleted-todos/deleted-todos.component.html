@@ -1,0 +1,5 @@
+<div>
+  <li *ngFor="let deletedTodo of store.deletedTodos$ | async">
+    {{ deletedTodo.title }} - Deleted
+  </li>
+</div>
