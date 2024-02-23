@@ -1,6 +1,6 @@
-import {Injectable} from '@angular/core';
-import {TodoItem} from './todo-item.interface';
-import {ComponentStore, OnStoreInit} from '@ngrx/component-store';
+import { Injectable } from '@angular/core';
+import { TodoItem } from './todo-item.interface';
+import { ComponentStore, OnStoreInit } from '@ngrx/component-store';
 
 export interface AppState {
   todoList: TodoItem[];
@@ -19,7 +19,8 @@ export const initialState: AppState = {
 })
 export class TodoStoreService
   extends ComponentStore<AppState>
-  implements OnStoreInit {
+  implements OnStoreInit
+{
   constructor() {
     super(initialState);
   }
@@ -33,20 +34,21 @@ export class TodoStoreService
       }
     } catch (e) {
       console.error('Error parsing todoState', e);
-      alert("Something went wrong... couldn't load previous saved data!")
-      localStorage.removeItem("todoState")
+      alert("Something went wrong... couldn't load previous saved data!");
+      localStorage.removeItem('todoState');
     }
-    const deletedTodoState = localStorage.getItem('deletedTodoState');
     try {
-      const deletedTodoStateJson = JSON.parse(deletedTodoState);
-      this.setState((state) => ({
-        ...state,
-        deletedTodoList: deletedTodoStateJson,
-      }));
-    } catch (error) {
-      console.error('Error parsing deletedTodoState', error);
-      alert("Something went wrong... couldn't load previous saved data!")
-      localStorage.removeItem("deletedTodoState")
+      if (todoState) {
+        const todoStateJson = JSON.parse(todoState);
+        const deletedTodoList = Array.isArray(todoStateJson.deletedTodoList)
+          ? todoStateJson.deletedTodoList
+          : [];
+        this.setState({ ...todoStateJson, deletedTodoList });
+      }
+    } catch (e) {
+      console.error('Error parsing todoState', e);
+      alert("Something went wrong... couldn't load previous saved data!");
+      localStorage.removeItem('todoState');
     }
 
     this.state$.subscribe((value) => {
@@ -55,6 +57,7 @@ export class TodoStoreService
         'deletedTodoState',
         JSON.stringify(value.deletedTodoList)
       );
+      console.log('deletedTodoList:', value.deletedTodoList);
     });
   }
 
